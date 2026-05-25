@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory, Notifiable;
 
     protected $table = 'users';
 
-    // TAMBAHKAN BARIS INI:
-    public $timestamps = false; 
+    // Nonaktifkan timestamps otomatis (tabel hanya punya created_at)
+    public $timestamps = false;
 
     protected $fillable = [
         'username',
@@ -30,8 +29,25 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function getAuthIdentifierName()
+    // Gunakan 'username' sebagai identifier login (bukan 'email')
+    public function getAuthIdentifierName(): string
     {
         return 'username';
+    }
+
+    // Nonaktifkan remember token karena kolom tidak ada di tabel
+    public function getRememberToken()
+    {
+        return null;
+    }
+
+    public function setRememberToken($value)
+    {
+        // Sengaja dikosongkan
+    }
+
+    public function getRememberTokenName()
+    {
+        return '';
     }
 }

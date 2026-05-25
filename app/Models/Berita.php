@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Berita extends Model
 {
     protected $table = 'berita'; // Nama tabel di database
-    protected $fillable = ['judul', 'gambar', 'tanggal', 'isi'];
+    protected $fillable = ['judul', 'gambar', 'tanggal'];
     public $timestamps = false; // Karena di kode awal tidak ada created_at/updated_at
 }
