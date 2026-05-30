@@ -1,4 +1,4 @@
 <?php
 
-// Mengarahkan request ke file index.php bawaan Laravel di folder public
+// Arahkan bootstrap Laravel ke folder public aslinya
 require __DIR__ . '/../public/index.php';
